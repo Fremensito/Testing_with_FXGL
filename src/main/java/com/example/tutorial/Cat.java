@@ -1,10 +1,7 @@
 package com.example.tutorial;
 
-import com.almasb.fxgl.core.math.Vec2;
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.input.UserAction;
-import javafx.scene.input.MouseButton;
+
 
 import java.awt.*;
 
