@@ -4,43 +4,42 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import javafx.scene.input.MouseButton;
+
 public class BasicGameApp extends GameApplication {
-    private Entity cat;
-    private Entity mainScene;
     private final int width = 900;
     private final int height = 700;
+    Entity cat;
+    Entity cuttingScene;
 
     @Override
     protected void initSettings(GameSettings settings) {
         settings.setWidth(width);
         settings.setHeight(height);
-        settings.setTicksPerSecond(30);
+        settings.setTicksPerSecond(60);
     }
 
-    protected void initGame(){
-        MainSceneGeneration();
+    protected void initGame() {
+        cat = FXGL.entityBuilder().buildAndAttach();
+        cat.addComponent(new Cat());
+
+        cuttingScene = FXGL.entityBuilder().buildAndAttach();
+        cuttingScene.addComponent(new SawMillScene());
     }
 
     @Override
-    protected void onUpdate(double tpf) {
+    protected void initInput() {
+        FXGL.getInput().addAction(GameController.getMouseController(), MouseButton.PRIMARY);
+    }
+    @Override
+    protected void onUpdate(double tpf){
+        if(GameController.getIsRightMousePressed() && !cat.getComponent(Cat.class).getIsCutting()){
+            cat.getComponent(Cat.class).cut();
+        }
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-    private void MainSceneGeneration(){
-        Cat cat = new Cat();
-        MainScene mainScene = new MainScene();
 
-        this.mainScene = FXGL.entityBuilder()
-                .view(mainScene.getBackGround())
-                .buildAndAttach();
-
-        this.cat = FXGL.entityBuilder()
-                .at(cat.getPositionX(), cat.getPositionY())
-                .view(cat.getImage())
-                .buildAndAttach();
-
-        this.cat.addComponent(new Cat());
-    }
 }
