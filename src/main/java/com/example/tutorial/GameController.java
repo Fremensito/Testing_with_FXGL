@@ -3,19 +3,37 @@ package com.example.tutorial;
 import com.almasb.fxgl.input.UserAction;
 
 public class GameController {
-    private static boolean isRightMousePressed = false;
+    private static boolean isLeftMousePressed = false;
+    private static boolean isEscPressed = false;
     private static UserAction mouseController = new UserAction("press space"){
         @Override
         protected void onActionBegin() {
-            isRightMousePressed = true;
+            isLeftMousePressed = true;
         }
         @Override
         protected void onActionEnd() {
-            isRightMousePressed = false;
+            isLeftMousePressed = false;
         }
     };
-    public static boolean getIsRightMousePressed(){
-        return isRightMousePressed;
+    private static UserAction escController = new UserAction("press esc"){
+        @Override
+        protected void onActionBegin() {
+            isEscPressed = true;
+        }
+        @Override
+        protected void onActionEnd() {
+            isEscPressed = false;
+        }
+    };
+    public static boolean getIsLeftMousePressed(){
+        return isLeftMousePressed;
+    }
+    public static boolean getIsEscPressed(){
+        return isEscPressed;
+    }
+
+    public static UserAction getEscController(){
+        return escController;
     }
 
     public static UserAction getMouseController(){
