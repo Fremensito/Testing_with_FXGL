@@ -13,8 +13,8 @@ public class MiniGameObject extends Component{
 
     private String objectType;
     
-    protected Texture compacted;
-    protected Texture cut;
+    private Texture compacted;
+    private Texture cut;
     private Point2D originCutting;
     private boolean isCut;
     private boolean beingCut;

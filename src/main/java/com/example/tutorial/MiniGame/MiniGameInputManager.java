@@ -15,6 +15,9 @@ public class MiniGameInputManager {
         }
     }
 
+    /**
+     * Function to manage the cutting of the mini game
+     */
     public void cut(){
         FXGL.getGameWorld().getEntities().stream()
             .filter(m -> m.hasComponent(MiniGameObject.class))

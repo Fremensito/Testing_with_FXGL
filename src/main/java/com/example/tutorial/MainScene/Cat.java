@@ -115,12 +115,19 @@ public class Cat extends Component{
             alive = false;
     }
 
+    /**
+     * Set visibility of cat and its bars
+     * @param visible - true if cat and its bars should be visible, false otherwise
+     */
     public void setVisibility(boolean visible){
         entity.setVisible(visible);
         hunger.setVisible(visible);
         energy.setVisible(visible);
     }
 
+    /**
+     * Makes cat walk randomly
+     */
     private void toWalk(){
         int proc = FXGL.random(1, 2000);
         if(proc <= walkingProbability*2 && !walking){
@@ -142,18 +149,28 @@ public class Cat extends Component{
         }
     }
 
+    /**
+     * Makes cat walk right
+     */
     private void rightStep(){
         walking = true;
         walkTexture.playAnimationChannel(walkAnimation);
         movement(-walkingSpeed);
     }
 
+    /**
+     * Makes cat walk left
+     */
     private void leftStep(){
         walking = true;
         walkTexture.playAnimationChannel(walkAnimation);
         movement(walkingSpeed);
     }
 
+    /**
+     * Makes cat walk
+     * @param walkingSpeed - speed of walking
+     */
     private void movement(double walkingSpeed){
         FXGL.getGameTimer().runOnceAfter(() -> {
             entity.translateX(walkingSpeed);

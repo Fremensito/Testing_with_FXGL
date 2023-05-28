@@ -9,7 +9,7 @@ import javafx.geometry.Rectangle2D;
 
 public abstract class Vitality extends Icon{
     protected final int SPRITE_WIDTH = 150;
-    public LocalDateTime lastUpdated;
+    protected LocalDateTime lastUpdated;
     protected final int QUANTITY_LIMIT = 7;
     protected int quantity;
     protected Texture subTexture;

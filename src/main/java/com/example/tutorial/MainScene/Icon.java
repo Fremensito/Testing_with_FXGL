@@ -22,6 +22,9 @@ public abstract class Icon{
         return icon;
     }
     
+    /**
+     * Check if the cursor is inside the icon
+     */
     protected void checkCursor(){
         if(hitbox.contains(FXGL.getInput().getMousePositionWorld())){
             icon.setScaleX(1.1);
@@ -35,6 +38,10 @@ public abstract class Icon{
         }
     }
 
+    /**
+     * Set the icon visible or invisible
+     * @param visible true if the icon should be visible, false otherwise
+     */
     public void setVisible(boolean visible){
         icon.setVisible(visible);
     }

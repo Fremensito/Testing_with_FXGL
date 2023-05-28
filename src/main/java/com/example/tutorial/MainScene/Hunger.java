@@ -38,6 +38,10 @@ public class Hunger extends Vitality{
         hitbox = new Rectangle(positionX, positionY, SPRITE_WIDTH, SPRITE_WIDTH);
     }
 
+    /**
+     * Increase hunger by 1 every 40 minutes
+     * Increase famine level by 1 every hour if hunger is full
+     */
     public void increaseHunger(){
         long difference = ChronoUnit.MINUTES.between(lastUpdated, LocalDateTime.now());
         if(difference >= HUNGER_INCREASE_M){

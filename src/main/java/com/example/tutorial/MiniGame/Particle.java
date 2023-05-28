@@ -39,7 +39,7 @@ public class Particle extends Component{
         entity.getViewComponent().addChild(texture);
         entity.setPosition(position);
     }
-
+    
     public void update(){
         disappearCounter++;
         switch(direction){

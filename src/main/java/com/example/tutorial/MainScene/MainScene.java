@@ -40,6 +40,9 @@ public class MainScene {
         this.day = day;
     }
 
+    /**
+     * Sets the days text
+     */
     public void setDays() {
         days = new Text("Days: " + (int) ChronoUnit.DAYS.between(
         cat.getComponent(Cat.class).getGameStart()
@@ -70,6 +73,12 @@ public class MainScene {
         exitRect = new Rectangle(415, 370, 150, 30);
     }
 
+    /**
+     * Generates a text
+     * @param text text to be generated
+     * @param x the position on the x axis
+     * @param y the position on the y axis
+     */
     private void generateText(Text text, int x, int y){
         text.setFill(Color.BROWN);
         text.setStyle("-fx-font: 30 arial;");
@@ -108,6 +117,9 @@ public class MainScene {
         }
     }
 
+    /**
+     * Updates the main scene
+     */
     public void mainSceneUpdate(){
         manager.update(miniGameIcon, cat);
         showMenu();
@@ -130,6 +142,9 @@ public class MainScene {
         }
     }
 
+    /**
+     * Shows the menu
+     */
     public void showMenu(){
         if(manager.getExitMenuIsOpen()){
             menu.setVisible(true);
@@ -161,6 +176,9 @@ public class MainScene {
         }
     }
 
+    /**
+     * Saves the game
+     */
     public void saveGame(){
         try{
             PrintWriter writer = new PrintWriter("save.txt");
@@ -182,6 +200,9 @@ public class MainScene {
         }
     }
 
+    /**
+     * Loads the game
+     */
     public void loadGame(){
         try{
             BufferedReader inputFile = null;
@@ -217,6 +238,9 @@ public class MainScene {
         }
     }
 
+    /**
+     * Updates the cat
+     */
     public void updateCat(){
         cat.getComponent(Cat.class).update();
         if(cat.getComponent(Cat.class).getHunger().isCursorInside()){
@@ -229,6 +253,9 @@ public class MainScene {
         }
     }
 
+    /**
+     * Sets the main scene invisible
+     */
     public void setMainSceneInvisible(){
         if(BasicGameApp.getScene() == "Mini Game"){
             FXGL.getGameScene().setBackgroundColor(Color.CADETBLUE);
@@ -246,11 +273,17 @@ public class MainScene {
         days.setVisible(false);
     }
 
+    /**
+     * Updates the mini game scene
+     */
     public void miniGameSceneUpdate(){
         miniGame.update(cat);
         setMainSceneVisible();
     }
 
+    /**
+     * Sets the main scene visible
+     */
     private void setMainSceneVisible(){
         if(BasicGameApp.getScene() == "Main Scene"){
             miniGameIcon.setVisible(true);

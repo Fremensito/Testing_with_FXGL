@@ -1,5 +1,6 @@
 package com.example.tutorial;
 
+import java.io.File;
 import java.time.LocalDateTime;
 
 import com.almasb.fxgl.app.GameApplication;
@@ -58,6 +59,12 @@ public class BasicGameApp extends GameApplication {
         scene = "Main Menu";
     }
 
+    /**
+     * Adds options to the main menu
+     * @param text the option to choose
+     * @param x its position on the x axis
+     * @param y its position on the y axis
+     */
     private void addOptions(Text text, int x, int y){
         text.setFill(javafx.scene.paint.Color.BROWN);
         text.setStyle("-fx-font: 30 arial;");
@@ -83,6 +90,10 @@ public class BasicGameApp extends GameApplication {
                 break;
         }
     }
+
+    /**
+     * Updates the main menu
+     */
     private void menuUpdate(){
         if(inputBlocked){
             timer++;
@@ -108,13 +119,21 @@ public class BasicGameApp extends GameApplication {
         if(loadGameRect.contains(FXGL.getInput().getMousePositionWorld())){
             loadGame.setFill(javafx.scene.paint.Color.YELLOW);
             if(GameController.getIsLeftMousePressed() && !inputBlocked){
-                changeScene();
-                mainScene.loadGame();
+                // check if the game.txt file exists
+                File file = new File("save.txt");
+                if(file.exists()){
+                    changeScene();
+                    mainScene.loadGame();
+                }
             }
         }
         else
             loadGame.setFill(javafx.scene.paint.Color.BROWN);
     }
+    
+    /**
+     * Changes the scene from the main menu to the main scene
+     */
     private void changeScene(){
         inputBlocked = true;
         scene = "Main Scene";
@@ -123,6 +142,10 @@ public class BasicGameApp extends GameApplication {
         loadGame.setVisible(false);
         mainScene = new MainScene();
     }
+
+    /**
+     * Creates a new game
+     */
     private void createGame(){
         mainScene.getCat().getComponent(Cat.class).setGold(0);
         mainScene.getCat().getComponent(Cat.class).getHunger().setQuantity(0);

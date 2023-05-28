@@ -15,6 +15,7 @@ public class GameController {
             isLeftMousePressed = false;
         }
     };
+    
     private static UserAction escController = new UserAction("press esc"){
         @Override
         protected void onActionBegin() {
@@ -25,6 +26,7 @@ public class GameController {
             isEscPressed = false;
         }
     };
+
     public static boolean getIsLeftMousePressed(){
         return isLeftMousePressed;
     }

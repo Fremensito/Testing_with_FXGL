@@ -30,7 +30,7 @@ public class Result {
         continueText.setFill(javafx.scene.paint.Color.BROWN);
         continueText.setStyle("-fx-font: 30 arial;");
     }
-
+    
     public void update(){
         if(counterToAppear < 60)
             counterToAppear++;

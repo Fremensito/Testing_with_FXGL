@@ -93,6 +93,9 @@ public class MiniGameScene{
         }
     }
 
+    /**
+     * Function to loose all lifes
+     */
     public void loosingAllLifes(){
         while(lifes > 0){
             lifes--;
@@ -100,6 +103,9 @@ public class MiniGameScene{
         }
     }
 
+    /**
+     * Function to generate objects
+     */
     public void generateObjects(){
         double positionX = FXGLMath.random(10, 740);
         double positionY = -150;
@@ -118,6 +124,10 @@ public class MiniGameScene{
         }
     }
     
+    /**
+     * Function to add an object to the game world
+     * @param miniGameObject the object to add
+     */
     public void addObject(Entity miniGameObject){
         FXGL.getGameWorld().addEntity(miniGameObject);
         FXGL.getGameWorld().getEntities().stream()
@@ -130,7 +140,9 @@ public class MiniGameScene{
             });
     }
 
-
+    /**
+     * Function to increase the difficulty of the mini game
+     */
     public void IncreseDifficulty(){
         miniGameObjectSpeed += speedBoost;
         FXGL.getGameWorld().getEntities().stream()
@@ -141,6 +153,9 @@ public class MiniGameScene{
         spawnProc += spawnProcBoost;
     }
 
+    /**
+     * Function to erase objects
+     */
     public void eraseObjects(){
         FXGL.getGameWorld().getEntities().stream().toList().forEach(m -> {
             if(m.hasComponent(MiniGameObject.class) && m.getY() >= 700){

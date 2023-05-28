@@ -19,6 +19,9 @@ public class Energy extends Vitality{
         hitbox = new Rectangle(positionX, positionY, SPRITE_WIDTH, SPRITE_WIDTH);
     }
 
+    /**
+     * Increase energy by 1 every 40 minutes
+     */
     public void increaseEnergy(){
         long difference = ChronoUnit.MINUTES.between(lastUpdated, LocalDateTime.now());
         if(quantity < QUANTITY_LIMIT){
@@ -33,6 +36,9 @@ public class Energy extends Vitality{
         }
     }
 
+    /**
+     * Decrease energy by 1 every hour
+     */
     public void looseEnergy(){
         long difference = ChronoUnit.HOURS.between(lastUpdated, LocalDateTime.now());
         if(quantity > 0){

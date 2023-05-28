@@ -35,14 +35,21 @@ public class MainSceneInputManager {
         openMenu();
     }
 
+    /**
+     * Open the mini game if the cursor is inside the mini game icon and the left mouse button is pressed
+     * @param miniGameIcon the mini game icon
+     * @param cat the pet to take care of
+     */
     private void toPlay(MiniGameIcon miniGameIcon, Entity cat){
         if(miniGameIcon.isCursorInside() && GameController.getIsLeftMousePressed() && !inputBlocked
             && cat.getComponent(Cat.class).getEnergy().getQuantity() > 0){
-            cat.getComponent(Cat.class).getHunger().setQuantity(cat.getComponent(Cat.class).getHunger().getQuantity() + 1);
-            FXGL.removeUINode(cat.getComponent(Cat.class).getHunger().getSubTexture());
-            cat.getComponent(Cat.class).getHunger().setSubTexture();
-            cat.getComponent(Cat.class).getHunger().addNode();
-            if(cat.getComponent(Cat.class).getHunger().getQuantity() > 0){
+            if(cat.getComponent(Cat.class).getHunger().getQuantity() < cat.getComponent(Cat.class).getHunger().getQuantityLimit()){
+                cat.getComponent(Cat.class).getHunger().setQuantity(cat.getComponent(Cat.class).getHunger().getQuantity() + 1);
+                FXGL.removeUINode(cat.getComponent(Cat.class).getHunger().getSubTexture());
+                cat.getComponent(Cat.class).getHunger().setSubTexture();
+                cat.getComponent(Cat.class).getHunger().addNode();
+            }
+            if(cat.getComponent(Cat.class).getEnergy().getQuantity() > 0){
                 cat.getComponent(Cat.class).getEnergy().setQuantity(cat.getComponent(Cat.class).getEnergy().getQuantity() - 1);
                 FXGL.removeUINode(cat.getComponent(Cat.class).getEnergy().getSubTexture());
                 cat.getComponent(Cat.class).getEnergy().setSubTexture();
@@ -53,6 +60,9 @@ public class MainSceneInputManager {
         }
     }
 
+    /**
+     * Open the menu if the escape key is pressed
+     */
     private void openMenu(){
         if(GameController.getIsEscPressed() && !inputBlocked){
             if(exitMenuIsOpen){
@@ -65,6 +75,10 @@ public class MainSceneInputManager {
         }
     }
 
+    /**
+     * Feed the cat if the cursor is inside the hunger icon and the left mouse button is pressed
+     * @param cat the pet to take care of
+     */
     private void feed(Entity cat){
         if(cat.getComponent(Cat.class).getHunger().isCursorInside()
             && cat.getComponent(Cat.class).getGold() >= cat.getComponent(Cat.class).getHunger().getPrice()
@@ -81,6 +95,10 @@ public class MainSceneInputManager {
         }
     }
 
+    /**
+     * Make the cat sleep if the cursor is inside the energy icon and the left mouse button is pressed
+     * @param cat the pet to take care of
+     */
     private void asleep(Entity cat){
         if(cat.getComponent(Cat.class).getEnergy().getQuantity() < cat.getComponent(Cat.class).getEnergy().getQuantityLimit()
             && cat.getComponent(Cat.class).getEnergy().isCursorInside() && GameController.getIsLeftMousePressed() && !inputBlocked){
